@@ -12,7 +12,7 @@ function importAll(r) {
     return images;
   }
   
- const images = importAll(require.context('/home/vrvembassy1/work/s/pavan/Bulletin_Board/boardServer/uploads', false, /\.(png|jpe?g|svg|JPG)$/));
+ const images = importAll(require.context('/home/vrvembassy1/work/Bulletin_Boards/boardServer/uploads', false, /\.(png|jpe?g|svg|JPG)$/));
 
 export default class TableReturn extends Component
 {
