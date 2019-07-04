@@ -1,0 +1,21 @@
+{
+  "short_name": "Mainkot",
+  "name": "Mainkot app",
+  "icons": [
+    {
+      "src": "mainkot_favicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "mainkot_favicon.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/mainkot/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "scope": "/mainkot/",
+  "background_color": "#ffffff"
+}

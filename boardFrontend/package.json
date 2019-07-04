@@ -1,0 +1,40 @@
+{
+  "name": "mainkot",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.5.1",
+    "axios": "^0.18.0",
+    "moment-timezone": "^0.5.23",
+    "node-thermal-printer": "^4.1.0",
+    "nodemon": "^1.18.9",
+    "react": "^16.5.2",
+    "react-bootstrap": "^0.32.4",
+    "react-bootstrap-sweetalert": "^4.4.1",
+    "react-detect-offline": "^2.1.2",
+    "react-dom": "^16.5.2",
+    "react-icons-kit": "^1.2.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.4",
+    "react-toastify": "^4.5.1",
+    "react-tooltip": "^3.9.2",
+    "reactstrap": "^8.0.0",
+    "redux": "^4.0.1",
+    "semantic-ui-react": "^0.87.1"
+  },
+  "scripts": {
+    "start": "PORT=3000 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
