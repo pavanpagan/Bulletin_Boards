@@ -42,9 +42,9 @@ This is a react based bulletin dashboard with node js,express server and built w
 # inside react app in Components/Body/Details.jsx and Components/extra/TableReturn.jsx i have specified image path you need to specify your system path where server directory exists
 
 In my case below one is the image uploading uploads directory path
- /home/vrvembassy1/work/s/pavan/Bulletin_Board/boardServer/uploads
+ /home/vrvembassy1/work/s/pavan/Bulletin_Boards/boardServer/uploads
 
- const images = importAll(require.context('/home/vrvembassy1/work/s/pavan/Bulletin_Board/boardServer/uploads', false, /\.(png|jpe?g|svg|JPG)$/));
+ const images = importAll(require.context('/home/vrvembassy1/work/s/pavan/Bulletin_Boards/boardServer/uploads', false, /\.(png|jpe?g|svg|JPG)$/));
 
 
 # 2) Server (boardServer)
