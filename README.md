@@ -21,7 +21,7 @@ This is a react based bulletin dashboard with node js,express server and built w
 # 2) Server(boardServer)
 
 
-#Installation Steps
+# Installation Steps
 
 # 1) React App 
 	
