@@ -7,6 +7,7 @@ import {radioChecked2} from 'react-icons-kit/icomoon/radioChecked2';
 import { Icon } from "react-icons-kit";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import axios from "axios";
+import api from '../apis/api';
 function importAll(r) 
 {
     let images = {};
@@ -22,6 +23,7 @@ const API_URL = 'http://127.0.0.1:8000';
      constructor(props)
      {
          super(props);
+         this.api=new api();
          this.state={
              comment:"",
              alert_message:"",
@@ -34,14 +36,9 @@ const API_URL = 'http://127.0.0.1:8000';
          }
      }
      
-     async componentWillMount()
+     async getDetails(id)
      {
-        const {element} = await this.props.location.state;
-        await this.setState({
-            id:element.id
-        })
-        let response=await axios.get(API_URL+'/simpleBoard/getDetailsView/'+this.state.id);
-        let values=response.data[0];
+        let values=  await this.api.detailsView(id);
         await this.setState({
             id:values.id,
             content:values.content,
@@ -49,6 +46,15 @@ const API_URL = 'http://127.0.0.1:8000';
             image:values.image,
             comments:values.comments
         })
+     }
+
+     async componentWillMount()
+     {
+        const {element} = await this.props.location.state;
+        await this.setState({
+            id:element.id
+        })
+        await this.getDetails(this.state.id);
      }
     
      valueChange(e)
@@ -58,6 +64,21 @@ const API_URL = 'http://127.0.0.1:8000';
              comment:value
          })
      }
+
+     async createComment(data)
+     {
+        let value=  await this.api.createComment(data);
+        await this.setState({
+            comments:[...this.state.comments, 
+            ({
+             "bid": value.bid,
+             "comment": value.comment,
+             "createdAt": value.createdAt,
+             "id": value.id,
+             "updatedAt": value.updatedAt})],
+             comment:""
+        })
+     }
      async handleComment()
      {
             if(this.state.comment.length>0)
@@ -66,18 +87,8 @@ const API_URL = 'http://127.0.0.1:8000';
                     "comment":this.state.comment,
                     "bid":this.state.id
                 }]
-                let response=await axios.post(API_URL+'/simpleBoard/createComment',{data});
-                let value=response.data;
-                await this.setState({
-                   comments:[...this.state.comments, 
-                   ({
-                    "bid": value.bid,
-                    "comment": value.comment,
-                    "createdAt": value.createdAt,
-                    "id": value.id,
-                    "updatedAt": value.updatedAt})],
-                    comment:""
-               })
+
+                await this.createComment(data);
             }
             else
             {

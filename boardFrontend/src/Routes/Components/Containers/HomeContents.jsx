@@ -4,14 +4,13 @@ import { Grid, Row, Col,Modal,FormGroup,FormControl,Form,Button } from "react-bo
 import { TextArea } from "semantic-ui-react";
 import axios from "axios";
 import SweetAlert from 'react-bootstrap-sweetalert';
+import api from '../apis/api';
 
-// const API_URL = process.env.REACT_APP_API_URL;
-
-const API_URL = 'http://127.0.0.1:8000';
  class HomeContents extends Component {
      constructor(props)
      {
          super(props);
+         this.api = new api();
          this.state={
             show:false,
             title:{
@@ -32,9 +31,14 @@ const API_URL = 'http://127.0.0.1:8000';
 
      async componentWillMount()
      {
-       let response=await axios.get(API_URL+'/simpleBoard/getContents');
+       await this.getItems();
+     }
+
+     async getItems()
+     {
+        let items=  await this.api.retrieveItems();
         await this.setState({
-            tables:response.data
+           tables:items
         })
      }
 
@@ -84,19 +88,14 @@ const API_URL = 'http://127.0.0.1:8000';
    async addBoard()
     {
         if(this.state.title.valid && this.state.content.valid && this.state.newImage)
-    {
+        {
             let data = new FormData();
             data.append('imagefile',this.state.newImage);
             data.append('title',this.state.title.value);
             data.append('content',this.state.content.value);
-           
-            let response=await axios({
-            method: 'post',
-            url: API_URL+'/simpleBoard/saveBoard',
-            data: data,
-             config:{ headers: {'Content-Type': 'multipart/form-data' }}
-            })
-            let value=response.data;
+            
+            let value=await this.api.createBoard(data);
+
              await this.setState({
                     tables:[...this.state.tables, 
                     ({  "comments": [],
@@ -118,14 +117,14 @@ const API_URL = 'http://127.0.0.1:8000';
                     },
                     newImage:""
                 })
-       }
-       else
-       {
-            this.setState({
-                alert_message:"Fields Should Not Be Empty.!",
-                alert_state_warning:true
-            })
-       }
+        }
+        else
+        {
+                this.setState({
+                    alert_message:"Fields Should Not Be Empty.!",
+                    alert_state_warning:true
+                })
+        }
     }
     render() {
         return (

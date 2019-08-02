@@ -14,3 +14,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   return board;
 };
+
+
+

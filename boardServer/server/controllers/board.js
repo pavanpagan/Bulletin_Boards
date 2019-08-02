@@ -26,24 +26,23 @@ module.exports = {
  async list(req, res) {
    try
    {
-    let items= await BoardItem
-    .findAll({
+    let items= await BoardItem.findAll({
       include: [{
         model: Comments,
         required:false,
         as: 'comments',
       }]
     })
-   return  res.status(200).send(items);
+    return  res.status(200).send(items);
    }
    catch(error)
    {
-    return res.status(400).send(error)
+    return res.status(400).send(error);
    }
-    
   },
 
   //To add comment
+  
   async createComment(req, res) {
     try
     {
@@ -53,7 +52,7 @@ module.exports = {
         comment: data.comment,
         bid: data.bid
       });
-   return res.status(201).send(commentResp);
+      return res.status(201).send(commentResp);
     }
     catch(error)
     {
