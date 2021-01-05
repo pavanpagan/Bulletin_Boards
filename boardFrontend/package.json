@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.5.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "moment-timezone": "^0.5.23",
     "node-thermal-printer": "^4.1.0",
     "nodemon": "^1.18.9",
